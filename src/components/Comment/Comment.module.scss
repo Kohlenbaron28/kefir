@@ -5,14 +5,27 @@
     padding: 20px 0;
   }
   img {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: auto;
+  }
+  &__image {
+    position: absolute;
+    z-index: -4;
+    overflow: hidden;
+    background-color: black;
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    margin-right: 20px;
   }
   &__right {
     display: flex;
     flex-basis: 60%;
+  }
+  &__text {
+    margin-left: 130px;
   }
   &__time {
     color: rgb(62, 61, 61);

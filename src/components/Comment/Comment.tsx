@@ -9,6 +9,7 @@ import { IState } from "../../types/IState";
 import { ICommentProps } from "../../types/ICommentProps";
 import * as actions from "../../store/actions";
 import styles from "./Comment.module.scss";
+import { url } from "inspector";
 
 const Comment = ({
   avatar,
@@ -34,10 +35,10 @@ const Comment = ({
     <li className={styles["comment"]}>
       <section>
         <div className={styles["comment__right"]}>
-          <div>
+          <div className={styles["comment__image"]}>
             <img src={avatar} alt="avatar" />
           </div>
-          <div>
+          <div className={styles["comment__text"]}>
             <h2>{name}</h2>
             <span className={styles["comment__time"]}>
               {formatDistanceToNow(new Date(created))}
