@@ -1,15 +1,17 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import { IState } from "../../types/IState";
 import { IFooterBtn } from "../../types/IFooterBtn";
 import * as actions from "../../store/actions";
+import styles from "./FooterBtn.module.scss";
 
 const FooterBtn = ({ showMore, firstRender }: IFooterBtn) => {
   return (
-    <div>
+    <footer className={styles["footer"]}>
       <button onClick={() => showMore()}>Показать ещё</button>
       <button onClick={() => firstRender()}>На первую страницу</button>
-    </div>
+    </footer>
   );
 };
 

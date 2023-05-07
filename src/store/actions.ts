@@ -1,6 +1,7 @@
-import { Constants } from "./constants";
-import getCommentsRequest from "../api/comments/getCommentsRequest";
-import getAuthorsRequest from "../api/authors/getAuthorsRequest";
+import getCommentsRequest from '../api/comments/getCommentsRequest';
+import getAuthorsRequest from '../api/authors/getAuthorsRequest';
+
+import { Constants } from './constants';
 
 export const firstRender = () => {
   return function (dispatch: any) {
@@ -13,9 +14,7 @@ export const firstRender = () => {
 
 export const getAuthors = () => {
   return function (dispatch: any) {
-    getAuthorsRequest().then((data) =>
-      dispatch({ type: Constants.GET_AUTHORS, data })
-    );
+    getAuthorsRequest().then((data) => dispatch({ type: Constants.GET_AUTHORS, data }));
   };
 };
 

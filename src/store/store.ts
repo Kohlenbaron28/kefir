@@ -1,5 +1,6 @@
-import { Constants } from "./constants";
-import { IComment, IState } from "../types/IState";
+import { IComment, IState } from '../types/IState';
+
+import { Constants } from './constants';
 
 const initialState: IState = {
   comments: [],
@@ -11,10 +12,7 @@ const initialState: IState = {
 export const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case Constants.FIRST_RENDER: {
-      const likesCount = action.data.data.reduce(
-        (acc: number, current: IComment) => acc + current.likes,
-        0
-      );
+      const likesCount = action.data.data.reduce((acc: number, current: IComment) => acc + current.likes, 0);
       return {
         ...state,
         comments: [...action.data.data],
@@ -27,10 +25,7 @@ export const reducer = (state = initialState, action: any) => {
         authors: [...action.data],
       };
     case Constants.SHOW_MORE: {
-      const likesCount = action.data.data.reduce(
-        (acc: number, current: IComment) => acc + current.likes,
-        0
-      );
+      const likesCount = action.data.data.reduce((acc: number, current: IComment) => acc + current.likes, 0);
       return {
         ...state,
         page: state.page + 1,

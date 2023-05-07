@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import { IState } from "../../types/IState";
 import { ICommentsListProps } from "../../types/ICommentsListProps";
 import Comment from "../Comment/Comment";
 import * as actions from "../../store/actions";
+import styles from "./CommentsList.module.scss";
 
 const CommentsList = ({ firstRender, comments }: ICommentsListProps) => {
   useEffect(() => {
@@ -27,7 +29,7 @@ const CommentsList = ({ firstRender, comments }: ICommentsListProps) => {
   };
 
   return (
-    <ul>
+    <ul className={styles["commentsList"]}>
       {nestComments(comments).map((comment: any) => {
         const pers = authors.filter((el) => el.id === comment.author)[0];
         return (

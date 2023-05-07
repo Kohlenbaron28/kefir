@@ -5,6 +5,7 @@ import {
   applyMiddleware,
   compose,
 } from "redux";
+
 import { reducer } from "./store/store";
 import CommentsList from "./components/CommentsList/CommentsList";
 import FooterBtn from "./components/FooterBtn/FooterBtn";

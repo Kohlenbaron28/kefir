@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 async function getAuthorsRequest() {
-  const { data } = await axios.get("/api/authors");
+  const { data } = await axios.get('/api/authors');
   return data;
 }
 

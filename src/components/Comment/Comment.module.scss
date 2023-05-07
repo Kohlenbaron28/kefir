@@ -1,0 +1,27 @@
+.comment {
+  section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+  img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  &__right {
+    display: flex;
+    flex-basis: 60%;
+  }
+  &__time {
+    color: rgb(62, 61, 61);
+  }
+  figure {
+    display: flex;
+    cursor: pointer;
+    figcaption {
+      margin-left: 10px;
+    }
+  }
+}

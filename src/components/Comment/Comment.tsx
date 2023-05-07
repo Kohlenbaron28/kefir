@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { formatDistanceToNow } from "date-fns";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+
 import { IState } from "../../types/IState";
 import { ICommentProps } from "../../types/ICommentProps";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import * as actions from "../../store/actions";
+import styles from "./Comment.module.scss";
 
 const Comment = ({
   avatar,
@@ -24,20 +27,25 @@ const Comment = ({
   }, [liked]);
   const authors = useSelector((state: IState) => state.authors);
   const handleClick = (e: any) => {
-    e.stopPropagation();
     setLiked(!liked);
+    e.stopPropagation();
   };
   return (
-    <li>
+    <li className={styles["comment"]}>
       <section>
-        <div>
-          <img src={avatar} alt="avatar" />
+        <div className={styles["comment__right"]}>
+          <div>
+            <img src={avatar} alt="avatar" />
+          </div>
+          <div>
+            <h2>{name}</h2>
+            <span className={styles["comment__time"]}>
+              {formatDistanceToNow(new Date(created))}
+            </span>
+            <p>{text}</p>
+          </div>
         </div>
-        <div>
-          <h2>{name}</h2>
-          <span>{created}</span>
-          <p>{text}</p>
-        </div>
+
         <figure onClick={(e) => handleClick(e)}>
           {liked ? <HeartFilled /> : <HeartOutlined />}
           <figcaption>{liked ? ++likes : likes}</figcaption>
@@ -67,21 +75,21 @@ const Comment = ({
   );
 };
 
-const mapStateToProps = (state: IState) => {
-  return {
-    comments: state.comments,
-  };
-};
+// const mapStateToProps = (state: IState) => {
+//   return {
+//     comments: state.comments,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch: any) => {
-  const { incrementLikes, decrementLikes } = bindActionCreators(
-    actions,
-    dispatch
-  );
-  return {
-    incrementLikes,
-    decrementLikes,
-  };
-};
+// const mapDispatchToProps = (dispatch: any) => {
+//   const { incrementLikes, decrementLikes } = bindActionCreators(
+//     actions,
+//     dispatch
+//   );
+//   return {
+//     incrementLikes,
+//     decrementLikes,
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+export default Comment;

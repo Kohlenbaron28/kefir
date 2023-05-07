@@ -1,4 +1,4 @@
-import { IComment } from "./IState";
+import { IComment } from './IState';
 
 export interface ICommentsListProps {
   firstRender: () => void;
