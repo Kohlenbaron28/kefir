@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 
 import { IState } from "../../types/IState";
 import { ICommentProps } from "../../types/ICommentProps";
 import * as actions from "../../store/actions";
 import styles from "./Comment.module.scss";
-import { url } from "inspector";
 
 const Comment = ({
   avatar,
@@ -57,8 +54,9 @@ const Comment = ({
           {childrenComments.map((child, i, arr) => {
             arr.pop();
             const pers = authors?.filter((el) => el.id === child.author)[0];
+            const MComment = memo(Comment);
             return (
-              <Comment
+              <MComment
                 avatar={pers?.avatar}
                 name={pers?.name}
                 created={child.created}
@@ -93,4 +91,4 @@ const Comment = ({
 //   };
 // };
 
-export default Comment;
+export default memo(Comment);
