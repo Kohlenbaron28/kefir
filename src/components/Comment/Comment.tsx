@@ -1,4 +1,4 @@
-import {useState, useCallback, useRef, memo} from "react";
+import {useState, useRef, memo} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {formatDistanceToNow} from "date-fns";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
@@ -22,13 +22,12 @@ const Comment = ({
     const [liked, setLiked] = useState(false);
     const authors = useSelector((state: IState) => state.authors);
     const resAuth: {current: IAuthor[]} = useRef(authors);
-    console.log(resAuth);
-    const handleClick = useCallback(async () => {
+    const handleClick = async () => {
         await setLiked((prev: boolean) => !prev);
         if (!liked) {
             dispatch(actions.incrementLikes());
         } else dispatch(actions.decrementLikes());
-    }, []);
+    };
 
     const elems = useRef(
         childrenComments !== undefined && childrenComments.length > 0 ? (
