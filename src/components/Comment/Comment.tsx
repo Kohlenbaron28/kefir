@@ -1,10 +1,11 @@
-import {useState, useCallback, useRef, memo, useEffect} from "react";
+import {useState, useCallback, useRef, memo} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {formatDistanceToNow} from "date-fns";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 import {Spin} from "antd";
 
-import {IState} from "../../types/IState";
+import {IState, IAuthor} from "../../types/IState";
+import {AppDispatch} from "../../types/IDispatch";
 import {ICommentProps} from "../../types/ICommentProps";
 import * as actions from "../../store/actions";
 import styles from "./Comment.module.scss";
@@ -17,14 +18,13 @@ const Comment = ({
     likes,
     childrenComments,
 }: ICommentProps) => {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const [liked, setLiked] = useState(false);
     const authors = useSelector((state: IState) => state.authors);
-    const resAuth: any = useRef(authors);
+    const resAuth: {current: IAuthor[]} = useRef(authors);
     console.log(resAuth);
-
     const handleClick = useCallback(async () => {
-        await setLiked((prev: any) => !prev);
+        await setLiked((prev: boolean) => !prev);
         if (!liked) {
             dispatch(actions.incrementLikes());
         } else dispatch(actions.decrementLikes());
@@ -36,7 +36,7 @@ const Comment = ({
                 {childrenComments.map((child, i, arr) => {
                     arr.pop();
                     const pers = resAuth.current?.filter(
-                        (el: any) => el.id === child.author,
+                        (el) => el.id === child.author,
                     )[0];
                     const MComment = memo(Comment);
                     return (

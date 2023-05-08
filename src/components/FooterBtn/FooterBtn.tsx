@@ -1,19 +1,21 @@
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 
-import { IFooterBtn } from "../../types/IFooterBtn";
+import {AppDispatch} from "../../types/IDispatch";
 import * as actions from "../../store/actions";
 import styles from "./FooterBtn.module.scss";
 
 const FooterBtn = () => {
-  const dispatch = useDispatch<any>();
-  return (
-    <footer className={styles["footer"]}>
-      <button onClick={() => dispatch(actions.showMore())}>Показать ещё</button>
-      <button onClick={() => dispatch(actions.firstRender())}>
-        На первую страницу
-      </button>
-    </footer>
-  );
+    const dispatch: AppDispatch = useDispatch();
+    return (
+        <footer className={styles["footer"]}>
+            <button onClick={() => dispatch(actions.showMore())}>
+                Показать ещё
+            </button>
+            <button onClick={() => dispatch(actions.firstRender())}>
+                На первую страницу
+            </button>
+        </footer>
+    );
 };
 
 export default FooterBtn;

@@ -1,4 +1,4 @@
-import {IAuthor, IComment} from "./IState";
+import {IComment} from "./IState";
 
 export interface ICommentProps {
     avatar?: string;
