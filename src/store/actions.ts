@@ -6,8 +6,8 @@ import {Constants} from "./constants";
 
 export const firstRender = () => {
     return function (dispatch: any) {
-        getCommentsRequest(1).then(async (data) => {
-            await dispatch(getAuthors());
+        getCommentsRequest(1).then((data) => {
+            // await dispatch(getAuthors());
             dispatch({type: Constants.FIRST_RENDER, data});
         });
     };

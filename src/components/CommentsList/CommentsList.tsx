@@ -8,8 +8,13 @@ import Comment from "../Comment/Comment";
 import * as actions from "../../store/actions";
 import styles from "./CommentsList.module.scss";
 
-const CommentsList = ({firstRender, comments}: ICommentsListProps) => {
+const CommentsList = ({
+    firstRender,
+    comments,
+    getAuthors,
+}: ICommentsListProps) => {
     useEffect(() => {
+        getAuthors();
         firstRender();
     }, []);
     const authors = useSelector((state: IState) => state.authors);
@@ -60,9 +65,10 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-    const {firstRender} = bindActionCreators(actions, dispatch);
+    const {firstRender, getAuthors} = bindActionCreators(actions, dispatch);
     return {
         firstRender,
+        getAuthors,
     };
 };
 

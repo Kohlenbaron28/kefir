@@ -1,6 +1,7 @@
-import { IComment } from './IState';
+import {IComment} from "./IState";
 
 export interface ICommentsListProps {
-  firstRender: () => void;
-  comments: IComment[];
+    firstRender: () => void;
+    comments: IComment[];
+    getAuthors: () => void;
 }

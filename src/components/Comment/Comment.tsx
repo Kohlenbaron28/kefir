@@ -1,7 +1,8 @@
-import {useState, useCallback, useRef, memo} from "react";
+import {useState, useCallback, useRef, memo, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {formatDistanceToNow} from "date-fns";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
+import {Spin} from "antd";
 
 import {IState} from "../../types/IState";
 import {ICommentProps} from "../../types/ICommentProps";
@@ -19,6 +20,9 @@ const Comment = ({
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
     const authors = useSelector((state: IState) => state.authors);
+    const resAuth: any = useRef(authors);
+    console.log(resAuth);
+
     const handleClick = useCallback(async () => {
         await setLiked((prev: any) => !prev);
         if (!liked) {
@@ -31,8 +35,8 @@ const Comment = ({
             <ul>
                 {childrenComments.map((child, i, arr) => {
                     arr.pop();
-                    const pers = authors?.filter(
-                        (el) => el.id === child.author,
+                    const pers = resAuth.current?.filter(
+                        (el: any) => el.id === child.author,
                     )[0];
                     const MComment = memo(Comment);
                     return (
@@ -57,7 +61,19 @@ const Comment = ({
             <section>
                 <div className={styles["comment__right"]}>
                     <div className={styles["comment__image"]}>
-                        <img src={avatar} alt="avatar" />
+                        {avatar ? (
+                            <img src={avatar} alt="avatar" loading="lazy" />
+                        ) : (
+                            <Spin
+                                size="large"
+                                style={{
+                                    position: "relative",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    top: 35,
+                                }}
+                            />
+                        )}
                     </div>
                     <div className={styles["comment__text"]}>
                         <h2>{name}</h2>
