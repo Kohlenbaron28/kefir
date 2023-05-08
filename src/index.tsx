@@ -6,17 +6,17 @@ import "./index.scss";
 import App from "./App";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+    document.getElementById("root") as HTMLElement,
 );
 
 const RootApp = () => {
-  useMockAdapter();
+    useMockAdapter();
 
-  return <App />;
+    return <App />;
 };
 
 root.render(
-  <React.StrictMode>
-    <RootApp />
-  </React.StrictMode>
+    <React.StrictMode>
+        <RootApp />
+    </React.StrictMode>,
 );
