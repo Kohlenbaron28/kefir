@@ -22,6 +22,11 @@ body {
 ul {
     list-style: none;
 }
+@media (max-width: 700px) {
+    ul {
+        padding: 20px;
+    }
+}
 @media (max-width: 400px) {
     ul {
         padding: 20px;

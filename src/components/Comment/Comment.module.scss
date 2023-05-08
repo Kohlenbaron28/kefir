@@ -38,6 +38,32 @@
         }
     }
 }
+@media (max-width: 750px) {
+    .comment {
+        section {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+        &__text {
+            margin-left: 120px;
+            p {
+                word-break: break-all;
+            }
+        }
+        &__time {
+            color: rgb(62, 61, 61);
+        }
+        figure {
+            display: flex;
+            cursor: pointer;
+            margin: 0;
+            figcaption {
+                margin-left: 10px;
+            }
+        }
+    }
+}
 @media (max-width: 400px) {
     .comment {
         section {
